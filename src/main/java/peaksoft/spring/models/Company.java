@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "companies")
@@ -23,5 +24,11 @@ public class Company {
     private String companyName;
 
     private String locatedCountry;
+
+    @OneToMany(mappedBy = "theCompany")
+    private List<Course> courses;
+
+    @OneToMany(mappedBy = "theCompany")
+    private List<Student> students;
 
 }

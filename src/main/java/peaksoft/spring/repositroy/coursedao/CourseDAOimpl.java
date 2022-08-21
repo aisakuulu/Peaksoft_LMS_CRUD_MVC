@@ -18,9 +18,9 @@ public class CourseDAOimpl implements CourseDAO {
 
     @Override
     public List<Course> getAllCourse() {
-        List<Course> courses = entityManager.createQuery("SELECT course FROM Course course",
-                Course.class).getResultList();
-        return courses;
+
+        return entityManager.
+                createQuery("SELECT c FROM Course c",Course.class).getResultList();
     }
 
     @Override
@@ -35,20 +35,18 @@ public class CourseDAOimpl implements CourseDAO {
 
     @Override
     public void updateCourse(Long id, Course upCourse) {
-        entityManager.getTransaction().begin();
-        Course course = getCourseByID(id);
+        Course course = entityManager.find(Course.class, id);
         course.setCourseName(upCourse.getCourseName());
         course.setDateOfStart(upCourse.getDateOfStart());
         course.setDuration(upCourse.getDuration());
         course.setImage(upCourse.getImage());
         course.setDescription(upCourse.getDescription());
         entityManager.merge(course);
-        entityManager.getTransaction().commit();
     }
 
     @Override
     public void deleteCourse(Long id) {
-        Course course = getCourseByID(id);
+        Course course = entityManager.find(Course.class, id);
         entityManager.remove(course);
     }
 }

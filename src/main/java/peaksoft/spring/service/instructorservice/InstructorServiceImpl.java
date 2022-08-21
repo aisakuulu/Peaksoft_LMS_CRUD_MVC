@@ -19,26 +19,26 @@ public class InstructorServiceImpl implements InstructorService{
 
     @Override
     public List<Instructor> getAllInstructor() {
-        return null;
+        return instructorDAO.getAllInstructor();
     }
 
     @Override
     public void addInstructor(Instructor instructor) {
-
+        instructorDAO.addInstructor(instructor);
     }
 
     @Override
     public Instructor getInstructorByID(Long id) {
-        return null;
+        return instructorDAO.getInstructorByID(id);
     }
 
     @Override
     public void updateInstructor(Long id, Instructor instructor) {
-
+        instructorDAO.updateInstructor(id, instructor);
     }
 
     @Override
     public void deleteInstructor(Long id) {
-
+        instructorDAO.deleteInstructor(id);
     }
 }

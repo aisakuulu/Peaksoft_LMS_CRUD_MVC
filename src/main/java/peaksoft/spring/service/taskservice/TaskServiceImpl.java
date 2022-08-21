@@ -17,26 +17,26 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public List<Task> getAllTask() {
-        return null;
+        return taskDAO.getAllTask();
     }
 
     @Override
     public void addTask(Task task) {
-
+        taskDAO.addTask(task);
     }
 
     @Override
     public Task getTaskByID(Long id) {
-        return null;
+        return taskDAO.getTaskByID(id);
     }
 
     @Override
     public void updateTask(Long id, Task task) {
-
+        taskDAO.updateTask(id, task);
     }
 
     @Override
     public void deleteTask(Long id) {
-
+        taskDAO.deleteTask(id);
     }
 }

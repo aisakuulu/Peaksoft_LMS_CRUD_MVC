@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "instructors")
@@ -24,4 +25,7 @@ public class Instructor {
     private String phoneNumber;
     private String email;
     private String specialization;
+
+    @ManyToMany
+    private List<Course> courses;
 }

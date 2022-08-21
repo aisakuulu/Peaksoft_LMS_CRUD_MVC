@@ -6,6 +6,7 @@ import lombok.Setter;
 import peaksoft.spring.enums.StudyFormat;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -25,4 +26,14 @@ public class Student {
     private String phoneNumber;
     private String email;
     private StudyFormat studyFormat;
+
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company theCompany;
+
+    @OneToOne
+    private Course theCourse;
+
+    @OneToMany
+    private List<Lesson> lessons;
 }

@@ -17,7 +17,9 @@ public class CompanyDAOimpl implements CompanyDAO{
 
     @Override
     public List<Company> getAllCompany() {
-        return entityManager.createQuery("SELECT com FROM Company  com", Company.class).getResultList();
+
+        return entityManager.
+                createQuery("SELECT com FROM Company  com", Company.class).getResultList();
     }
 
     @Override
@@ -32,12 +34,10 @@ public class CompanyDAOimpl implements CompanyDAO{
 
     @Override
     public void updateCompany(Long id, Company updatedCompany) {
-        entityManager.getTransaction().begin();
-        Company company = getCompanyByID(id);
+        Company company = entityManager.find(Company.class, id);
         company.setCompanyName(updatedCompany.getCompanyName());
         company.setLocatedCountry(updatedCompany.getLocatedCountry());
         entityManager.merge(company);
-        entityManager.getTransaction().commit();
     }
 
     @Override

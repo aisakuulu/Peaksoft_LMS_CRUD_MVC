@@ -20,4 +20,8 @@ public class Task {
     private String taskName;
     private String taskText;
     private Date deadLine;
+
+    @OneToOne
+    private Lesson lesson;
+
 }

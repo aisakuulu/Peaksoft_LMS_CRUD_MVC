@@ -16,26 +16,29 @@ public class LessonDAOimpl implements LessonDAO{
 
     @Override
     public List<Lesson> getAllLesson() {
-        return null;
+        return entityManager.createQuery
+                ("SELECT les FROM Lesson les", Lesson.class).getResultList();
     }
 
     @Override
     public void addLesson(Lesson lesson) {
-
+        entityManager.persist(lesson);
     }
 
     @Override
     public Lesson getLessonByID(Long id) {
-        return null;
+        return entityManager.find(Lesson.class, id);
     }
 
     @Override
-    public void updateLesson(Long id, Lesson lesson) {
-
+    public void updateLesson(Long id, Lesson upLesson) {
+        Lesson lesson = entityManager.find(Lesson.class, id);
+        lesson.setLessonName(upLesson.getLessonName());
     }
 
     @Override
     public void deleteLesson(Long id) {
-
+        Lesson lesson = entityManager.find(Lesson.class, id);
+        entityManager.remove(lesson);
     }
 }

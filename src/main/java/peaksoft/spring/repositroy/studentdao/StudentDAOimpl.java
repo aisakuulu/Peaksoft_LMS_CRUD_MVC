@@ -17,26 +17,33 @@ public class StudentDAOimpl implements StudentDAO{
 
     @Override
     public List<Student> getAllStudent() {
-        return null;
+        return entityManager.createQuery("SELECT st FROM Student st", Student.class).getResultList();
     }
 
     @Override
     public void addStudent(Student student) {
-
+        entityManager.persist(student);
     }
 
     @Override
     public Student getStudentByID(Long id) {
-        return null;
+        return entityManager.find(Student.class, id);
     }
 
     @Override
-    public void updateStudent(Long id, Student student) {
-
+    public void updateStudent(Long id, Student upStudent) {
+        Student student = entityManager.find(Student.class, id);
+        student.setFirstName(upStudent.getFirstName());
+        student.setLastName(upStudent.getLastName());
+        student.setPhoneNumber(upStudent.getPhoneNumber());
+        student.setEmail(upStudent.getEmail());
+        student.setStudyFormat(upStudent.getStudyFormat());
+        entityManager.merge(student);
     }
 
     @Override
     public void deleteStudent(Long id) {
-
+        Student student = entityManager.find(Student.class, id);
+        entityManager.remove(student);
     }
 }

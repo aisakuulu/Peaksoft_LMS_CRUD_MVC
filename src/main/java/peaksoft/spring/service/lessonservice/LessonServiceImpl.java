@@ -17,26 +17,26 @@ public class LessonServiceImpl implements LessonService{
 
     @Override
     public List<Lesson> getAllLesson() {
-        return null;
+        return lessonDAO.getAllLesson();
     }
 
     @Override
     public void addLesson(Lesson lesson) {
-
+        lessonDAO.addLesson(lesson);
     }
 
     @Override
     public Lesson getLessonByID(Long id) {
-        return null;
+        return lessonDAO.getLessonByID(id);
     }
 
     @Override
     public void updateLesson(Long id, Lesson lesson) {
-
+        lessonDAO.updateLesson(id, lesson);
     }
 
     @Override
     public void deleteLesson(Long id) {
-
+        lessonDAO.deleteLesson(id);
     }
 }

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "lessons")
@@ -17,4 +18,10 @@ public class Lesson {
     @SequenceGenerator(name = "lesson_gen", sequenceName = "lesson_seq", allocationSize = 1)
     private Long id;
     private String lessonName;
+
+    @OneToMany
+    private List<Task> tasks;
+
+    @OneToOne
+    private Video video;
 }

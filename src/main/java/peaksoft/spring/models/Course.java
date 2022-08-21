@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -25,4 +26,17 @@ public class Course {
     private int duration;
     private String image;
     private String description;
+
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company theCompany;
+
+    @ManyToMany
+    private List<Instructor> instructors;
+
+    @OneToMany
+    private List<Student> students;
+
+    @OneToMany
+    private List<Lesson> lessons;
 }
