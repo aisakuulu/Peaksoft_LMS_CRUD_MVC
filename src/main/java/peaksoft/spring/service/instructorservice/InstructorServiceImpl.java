@@ -18,7 +18,7 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public List<Instructor> getAllInstructor(Instructor instructor) {
+    public List<Instructor> getAllInstructor() {
         return null;
     }
 
@@ -33,12 +33,12 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public void updateInstructor(Instructor instructor) {
+    public void updateInstructor(Long id, Instructor instructor) {
 
     }
 
     @Override
-    public void deleteInstructor(Instructor instructor) {
+    public void deleteInstructor(Long id) {
 
     }
 }

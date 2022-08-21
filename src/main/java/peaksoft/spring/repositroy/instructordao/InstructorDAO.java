@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface InstructorDAO {
 
-    List<Instructor> getAllInstructor(Instructor instructor);
+    List<Instructor> getAllInstructor();
 
     void addInstructor(Instructor instructor);
 
     Instructor getInstructorByID(Long id);
 
-    void updateInstructor(Instructor instructor);
+    void updateInstructor(Long id, Instructor instructor);
 
-    void deleteInstructor(Instructor instructor);
+    void deleteInstructor(Long id);
 
 }

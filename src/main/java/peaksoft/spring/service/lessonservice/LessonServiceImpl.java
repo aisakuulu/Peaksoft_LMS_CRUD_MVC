@@ -16,7 +16,7 @@ public class LessonServiceImpl implements LessonService{
     }
 
     @Override
-    public List<Lesson> getAllLesson(Lesson lesson) {
+    public List<Lesson> getAllLesson() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class LessonServiceImpl implements LessonService{
     }
 
     @Override
-    public void updateLesson(Lesson lesson) {
+    public void updateLesson(Long id, Lesson lesson) {
 
     }
 
     @Override
-    public void deleteLesson(Lesson lesson) {
+    public void deleteLesson(Long id) {
 
     }
 }

@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface LessonService {
 
-    List<Lesson> getAllLesson(Lesson lesson);
+    List<Lesson> getAllLesson();
 
     void addLesson(Lesson lesson);
 
     Lesson getLessonByID(Long id);
 
-    void updateLesson(Lesson lesson);
+    void updateLesson(Long id, Lesson lesson);
 
-    void deleteLesson(Lesson lesson);
+    void deleteLesson(Long id);
 
 }

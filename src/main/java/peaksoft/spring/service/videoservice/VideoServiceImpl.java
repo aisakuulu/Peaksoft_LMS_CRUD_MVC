@@ -16,7 +16,7 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public List<Video> getAllVideo(Video video) {
+    public List<Video> getAllVideo() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public void updateVideo(Video video) {
+    public void updateVideo(Long id, Video video) {
 
     }
 
     @Override
-    public void deleteVideo(Video video) {
+    public void deleteVideo(Long id) {
 
     }
 }

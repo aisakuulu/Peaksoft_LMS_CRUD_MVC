@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface TaskDAO {
 
-    List<Task> getAllTask(Task task);
+    List<Task> getAllTask();
 
     void addTask(Task task);
 
     Task getTaskByID(Long id);
 
-    void updateTask(Task task);
+    void updateTask(Long id, Task task);
 
-    void deleteTask(Task task);
+    void deleteTask(Long id);
 
 }

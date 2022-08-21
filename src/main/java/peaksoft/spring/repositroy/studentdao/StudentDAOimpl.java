@@ -16,7 +16,7 @@ public class StudentDAOimpl implements StudentDAO{
     private EntityManager entityManager;
 
     @Override
-    public List<Student> getAllStudent(Student student) {
+    public List<Student> getAllStudent() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class StudentDAOimpl implements StudentDAO{
     }
 
     @Override
-    public void updateStudent(Student student) {
+    public void updateStudent(Long id, Student student) {
 
     }
 
     @Override
-    public void deleteStudent(Student student) {
+    public void deleteStudent(Long id) {
 
     }
 }

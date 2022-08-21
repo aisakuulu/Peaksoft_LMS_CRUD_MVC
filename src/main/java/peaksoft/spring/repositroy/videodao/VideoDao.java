@@ -7,14 +7,14 @@ import java.util.List;
 public interface VideoDao {
 
 
-    List<Video> getAllVideo(Video video);
+    List<Video> getAllVideo();
 
     void addVideo(Video video);
 
     Video getVideoByID(Long id);
 
-    void updateVideo(Video video);
+    void updateVideo(Long id, Video video);
 
-    void deleteVideo(Video video);
+    void deleteVideo(Long id);
 
 }

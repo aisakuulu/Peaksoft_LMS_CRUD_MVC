@@ -16,7 +16,7 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<Task> getAllTask(Task task) {
+    public List<Task> getAllTask() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void updateTask(Task task) {
+    public void updateTask(Long id, Task task) {
 
     }
 
     @Override
-    public void deleteTask(Task task) {
+    public void deleteTask(Long id) {
 
     }
 }

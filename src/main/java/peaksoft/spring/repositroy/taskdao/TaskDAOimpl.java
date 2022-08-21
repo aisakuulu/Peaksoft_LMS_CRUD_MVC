@@ -16,7 +16,7 @@ public class TaskDAOimpl implements TaskDAO{
     private EntityManager entityManager;
 
     @Override
-    public List<Task> getAllTask(Task task) {
+    public List<Task> getAllTask() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class TaskDAOimpl implements TaskDAO{
     }
 
     @Override
-    public void updateTask(Task task) {
+    public void updateTask(Long id, Task task) {
 
     }
 
     @Override
-    public void deleteTask(Task task) {
+    public void deleteTask(Long id) {
 
     }
 }
