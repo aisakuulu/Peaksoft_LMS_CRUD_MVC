@@ -46,7 +46,7 @@ public class CompanyController {
         return "company/edit-company";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updatedCompany(@ModelAttribute("companyInfo") Company company,
                                  @PathVariable("id") Long id){
         companyService.updateCompany(id, company);

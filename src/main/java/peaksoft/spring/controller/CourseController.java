@@ -32,7 +32,7 @@ public class CourseController {
         return "course/new-course";
     }
 
-    @PostMapping("/save")
+    @PostMapping("save")
     public String createCourse(@ModelAttribute("addCourseAtr") Course course){
         courseService.addCourse(course);
         return "redirect:/courses";
@@ -45,7 +45,7 @@ public class CourseController {
         return "/course/edit-course";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateCourse(@ModelAttribute("courseInfo") Course course,
                                @PathVariable("id") Long id){
         courseService.updateCourse(id, course);
