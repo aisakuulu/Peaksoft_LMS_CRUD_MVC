@@ -18,13 +18,13 @@ public class InstructorServiceImpl implements InstructorService{
     }
 
     @Override
-    public List<Instructor> getAllInstructor() {
-        return instructorDAO.getAllInstructor();
+    public List<Instructor> getAllInstructor(Long id) {
+        return instructorDAO.getAllInstructor(id);
     }
 
     @Override
-    public void addInstructor(Instructor instructor) {
-        instructorDAO.addInstructor(instructor);
+    public void addInstructor(Long id, Instructor instructor) {
+        instructorDAO.addInstructor(id, instructor);
     }
 
     @Override
@@ -40,5 +40,10 @@ public class InstructorServiceImpl implements InstructorService{
     @Override
     public void deleteInstructor(Long id) {
         instructorDAO.deleteInstructor(id);
+    }
+
+    @Override
+    public void addInstructorToCourse(Long instructorId, Long courseId) {
+        instructorDAO.addInstructorToCourse(instructorId, courseId);
     }
 }

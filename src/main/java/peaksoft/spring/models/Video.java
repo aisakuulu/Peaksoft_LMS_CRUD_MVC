@@ -18,4 +18,11 @@ public class Video {
     private Long id;
     private String videoName;
     private String link;
+
+    @OneToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
+    private Lesson lesson;
 }

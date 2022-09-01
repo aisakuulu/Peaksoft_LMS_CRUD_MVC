@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,27 @@ public class Lesson {
     private Long id;
     private String lessonName;
 
-    @OneToMany
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "lesson")
     private List<Task> tasks;
 
-    @OneToOne
+    public void addTask(Task task) {
+        if(tasks == null) {
+            tasks = new ArrayList<>();
+        } else {
+            this.tasks.add(task);
+        }
+    }
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "lesson")
     private Video video;
+
+
 }

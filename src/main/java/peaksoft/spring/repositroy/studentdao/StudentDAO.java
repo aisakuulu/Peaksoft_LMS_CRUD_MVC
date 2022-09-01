@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface StudentDAO {
 
-    List<Student> getAllStudent();
+    List<Student> getAllStudent(Long id);
 
-    void addStudent(Student student);
+    void addStudent(Long companyId, Student student);
 
     Student getStudentByID(Long id);
 
     void updateStudent(Long id, Student student);
 
     void deleteStudent(Long id);
+
+    void addStudentToCourse(Long studentId,Long courseId);
 }

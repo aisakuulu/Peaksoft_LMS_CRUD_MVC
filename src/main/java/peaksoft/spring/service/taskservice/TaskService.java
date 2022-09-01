@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface TaskService {
 
-    List<Task> getAllTask();
+    List<Task> getAllTask(Long id);
 
-    void addTask(Task task);
+    void addTask(Long lessonId, Task task);
 
     Task getTaskByID(Long id);
 

@@ -8,9 +8,9 @@ import java.util.List;
 public interface CourseDAO {
 
 
-    List<Course> getAllCourse();
+    List<Course> getAllCourse(Long id);
 
-    void addCourse(Course course);
+    void addCourse(Long id, Course course);
 
     Course getCourseByID(Long id);
 

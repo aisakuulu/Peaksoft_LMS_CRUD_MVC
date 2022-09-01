@@ -7,9 +7,9 @@ import java.util.List;
 public interface VideoDao {
 
 
-    List<Video> getAllVideo();
+    List<Video> getAllVideo(Long id);
 
-    void addVideo(Video video);
+    void addVideo(Long lessonId, Video video);
 
     Video getVideoByID(Long id);
 

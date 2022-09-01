@@ -16,14 +16,15 @@ public class CourseServiceImpl implements CourseService{
         this.courseDAO = courseDAO;
     }
 
+
     @Override
-    public List<Course> getAllCourse() {
-        return courseDAO.getAllCourse();
+    public List<Course> getAllCourse(Long id) {
+        return courseDAO.getAllCourse(id);
     }
 
     @Override
-    public void addCourse(Course course) {
-        courseDAO.addCourse(course);
+    public void addCourse(Long id, Course course) {
+        courseDAO.addCourse(id, course);
     }
 
     @Override

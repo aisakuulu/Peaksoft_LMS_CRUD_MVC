@@ -16,13 +16,13 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public List<Student> getAllStudent() {
-        return studentDAO.getAllStudent();
+    public List<Student> getAllStudent(Long id) {
+        return studentDAO.getAllStudent(id);
     }
 
     @Override
-    public void addStudent(Student student) {
-        studentDAO.addStudent(student);
+    public void addStudent(Long id, Student student) {
+        studentDAO.addStudent(id, student);
     }
 
     @Override
@@ -38,5 +38,10 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public void deleteStudent(Long id) {
         studentDAO.deleteStudent(id);
+    }
+
+    @Override
+    public void addStudentToCourse(Long studentId, Long courseId) {
+        studentDAO.addStudentToCourse(studentId, courseId);
     }
 }

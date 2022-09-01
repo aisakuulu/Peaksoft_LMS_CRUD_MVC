@@ -16,13 +16,13 @@ public class LessonServiceImpl implements LessonService{
     }
 
     @Override
-    public List<Lesson> getAllLesson() {
-        return lessonDAO.getAllLesson();
+    public List<Lesson> getAllLesson(Long id) {
+        return lessonDAO.getAllLesson(id);
     }
 
     @Override
-    public void addLesson(Lesson lesson) {
-        lessonDAO.addLesson(lesson);
+    public void addLesson(Long id, Lesson lesson) {
+        lessonDAO.addLesson(id, lesson);
     }
 
     @Override

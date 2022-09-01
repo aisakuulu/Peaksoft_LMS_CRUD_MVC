@@ -2,6 +2,7 @@ package peaksoft.spring.service.companyservice;
 
 import org.springframework.stereotype.Service;
 import peaksoft.spring.models.Company;
+import peaksoft.spring.models.Course;
 import peaksoft.spring.repositroy.companydao.CompanyDAO;
 
 import java.util.List;
@@ -39,4 +40,11 @@ public class CompanyServiceImpl implements CompanyService{
     public void deleteCompany(Long id) {
         companyDAO.deleteCompany(id);
     }
+
+    @Override
+    public void addCourseToCompany(Long courseId, Long companyId) {
+        companyDAO.addCourseToCompany(courseId, companyId);
+    }
+
+
 }

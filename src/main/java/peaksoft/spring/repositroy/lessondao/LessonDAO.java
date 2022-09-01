@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface LessonDAO {
 
-    List<Lesson> getAllLesson();
+    List<Lesson> getAllLesson(Long id);
 
-    void addLesson(Lesson lesson);
+    void addLesson(Long courseId, Lesson lesson);
 
     Lesson getLessonByID(Long id);
 

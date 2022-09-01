@@ -18,14 +18,17 @@ public class InstructorDAOimpl implements InstructorDAO{
     private EntityManager entityManager;
 
     @Override
-    public List<Instructor> getAllInstructor() {
-        return entityManager.createQuery("SELECT inst FROM Instructor inst",
-                Instructor.class).getResultList();
+    public List<Instructor> getAllInstructor(Long id) {
+        return entityManager.createQuery("select i FROM Instructor i WHERE i.theCompany.id = :id", Instructor.class)
+                .setParameter("id", id).getResultList();
     }
 
     @Override
-    public void addInstructor(Instructor instructor) {
-        entityManager.persist(instructor);
+    public void addInstructor(Long id, Instructor instructor) {
+        Company company = entityManager.find(Company.class, id);
+        company.addInstructor(instructor);
+        instructor.setTheCompany(company);
+        entityManager.merge(instructor);
     }
 
     @Override
@@ -49,5 +52,14 @@ public class InstructorDAOimpl implements InstructorDAO{
         Instructor instructor = entityManager.find(Instructor.class, id);
         entityManager.remove(instructor);
 
+    }
+
+    @Override
+    public void addInstructorToCourse(Long instructorId, Long courseId) {
+        Instructor instructor = entityManager.find(Instructor.class, instructorId);
+        Course course = entityManager.find(Course.class, courseId);
+        instructor.addCourse(course);
+        course.addInstructors(instructor);
+        entityManager.merge(instructor);
     }
 }

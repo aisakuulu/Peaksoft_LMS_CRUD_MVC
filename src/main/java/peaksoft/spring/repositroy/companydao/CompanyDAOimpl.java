@@ -2,15 +2,18 @@ package peaksoft.spring.repositroy.companydao;
 
 import org.springframework.stereotype.Repository;
 import peaksoft.spring.models.Company;
+import peaksoft.spring.models.Course;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 @Transactional
 public class CompanyDAOimpl implements CompanyDAO{
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -45,4 +48,15 @@ public class CompanyDAOimpl implements CompanyDAO{
         Company company = entityManager.find(Company.class, id);
         entityManager.remove(company);
     }
+
+    @Override
+    public void addCourseToCompany(Long courseId, Long companyId) {
+
+        Course course = entityManager.find(Course.class, courseId);
+        Company company = entityManager.find(Company.class, companyId);
+        company.addCourse(course);
+        entityManager.merge(company);
+    }
+
+
 }

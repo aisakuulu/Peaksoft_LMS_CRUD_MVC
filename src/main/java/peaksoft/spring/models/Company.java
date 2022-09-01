@@ -1,10 +1,12 @@
 package peaksoft.spring.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,10 +27,35 @@ public class Company {
 
     private String locatedCountry;
 
-    @OneToMany(mappedBy = "theCompany")
+    @OneToMany(mappedBy = "theCompany", cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     private List<Course> courses;
+
+    public void addCourse(Course course){
+        if (courses == null){
+            courses = new ArrayList<>();
+        } else{
+            this.courses.add(course);
+        }
+    }
+    @OneToMany(mappedBy = "theCompany", cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    private List<Instructor> instructors;
+
+    public void addInstructor(Instructor instructor) {
+        if(instructors == null) {
+            instructors = new ArrayList<>();
+        } else {
+            this.instructors.add(instructor);
+        }
+    }
 
     @OneToMany(mappedBy = "theCompany")
     private List<Student> students;
 
+    public void addStudent(Student student) {
+        if(students == null) {
+            students=new ArrayList<>();
+        } else {
+            this.students.add(student);
+        }
+    }
 }

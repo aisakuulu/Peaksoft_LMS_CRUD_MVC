@@ -1,6 +1,7 @@
 package peaksoft.spring.repositroy.companydao;
 
 import peaksoft.spring.models.Company;
+import peaksoft.spring.models.Course;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CompanyDAO {
     void updateCompany(Long id, Company updatedCompany);
 
     void deleteCompany(Long id);
+
+    void addCourseToCompany(Long courseId, Long companyId);
 }

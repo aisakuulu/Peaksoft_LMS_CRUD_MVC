@@ -1,6 +1,7 @@
 package peaksoft.spring.repositroy.taskdao;
 
 import org.springframework.stereotype.Repository;
+import peaksoft.spring.models.Lesson;
 import peaksoft.spring.models.Task;
 
 import javax.persistence.EntityManager;
@@ -16,12 +17,17 @@ public class TaskDAOimpl implements TaskDAO{
     private EntityManager entityManager;
 
     @Override
-    public List<Task> getAllTask() {
-        return entityManager.createQuery("SELECT tsk FROM Task tsk", Task.class).getResultList();
+    public List<Task> getAllTask(Long id) {
+        return entityManager.createQuery
+                ("select t FROM Task t WHERE t.lesson.id = :id",
+                        Task.class).setParameter("id", id).getResultList();
     }
 
     @Override
-    public void addTask(Task task) {
+    public void addTask(Long lessonId, Task task) {
+        Lesson lesson = entityManager.find(Lesson.class,lessonId);
+        lesson.addTask(task);
+        task.setLesson(lesson);
         entityManager.persist(task);
     }
 

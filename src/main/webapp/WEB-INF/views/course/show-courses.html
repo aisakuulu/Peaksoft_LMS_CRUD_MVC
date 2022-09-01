@@ -8,11 +8,10 @@
           crossorigin="anonymous">
     <style>
         .container {
-            width: 780px;
+            /*width: 1320px;*/
             padding-top: 40px;
             margin: auto auto;
         }
-
         .welcome {
             margin-top: 20px;
             font-weight: inherit;
@@ -24,36 +23,69 @@
 
         .link {
             width: 680px;
-            margin-top: 40px;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
 
     </style>
 </head>
 <body>
+
 <nav th:replace="layouts :: navbar"></nav>
 
 <div class="welcome">
     <h2>COURSE INFORMATION</h2>
 </div>
-<div class="container">
-    <div class="card " style="width: 18rem;" th:each="course : ${getAllCourses}">
-        <img th:src="${course.image}" class="card-img-top" alt="Image">
-        <div class="card-body">
-            <h5 th:text="${course.courseName}" class="card-title">Card title</h5>
-            <p th:text="${course.description}" class="card-text">Some quick example.</p>
+
+    <div class="container">
+
+        <div class=" link">
+            <a th:href="@{/courses/{id}/newCourseForm(id=${companyId})}" type="button" class="btn btn-primary">Create Course</a>
+            <a th:href="@{/companies}" type="button" class="btn btn-primary">Back</a>
         </div>
-        <ul class="list-group list-group-flush">
-            <li th:text="${course.dateOfStart}" class="list-group-item">An item</li>
-            <li th:text="${course.duration}" class="list-group-item">A second item</li>
-        </ul>
-        <div class="card-body">
-            <a th:href="@{/courses/{id}/edit(id=${course.getId()})}" type="button" class="btn btn-primary">UPDATE</a>
-            <form th:method="DELETE" th:action="@{/courses/delete/{id}(id=${course.getId()})}">
-                <input th:value="DELETE" type="submit" class="btn btn-primary"/>
-            </form>
-        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">Company</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Lesson</th>
+            </tr>
+            </thead>
+            <tbody th:each="course : ${atrCourses}">
+            <tr>
+                <th scope="row" th:text="${course.id}">Course ID</th>
+                <td th:text="${course.courseName}">Company Name</td>
+                <td th:text="${course.dateOfStart}">Date</td>
+                <td th:text="${course.duration}">Duration</td>
+                <td th:text="${course.image}">Image</td>
+                <td th:text="${course.description}">Description</td>
+                <td th:text="${course.theCompany.getId()}">Some Text</td>
+                <td>
+                    <a th:href="@{/courses/displayUpdateForm/{courseId}(courseId=${course.getId()})}" type="button"
+                       class="btn btn-primary">UPDATE</a>
+                </td>
+                <td>
+                    <form th:method="DELETE"
+                          th:action="@{/courses/{courseId}/{companyId}/delete(courseId=${course.getId()}, companyId=${companyId})}">
+                        <input th:value="DELETE" type="submit" class="btn btn-primary"/>
+                    </form>
+                </td>
+                <td>
+                    <a th:href="@{/lessons/showLessons/{courseId}(courseId=${course.getId()})}" type="button"
+                       class="btn btn-primary">LESSON</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
-</div>
 </body>
 </html>

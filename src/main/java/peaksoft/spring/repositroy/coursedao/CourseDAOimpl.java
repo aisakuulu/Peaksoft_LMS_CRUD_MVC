@@ -17,14 +17,18 @@ public class CourseDAOimpl implements CourseDAO {
     private EntityManager entityManager;
 
     @Override
-    public List<Course> getAllCourse() {
+    public List<Course> getAllCourse(Long id) {
 
         return entityManager.
-                createQuery("SELECT c FROM Course c",Course.class).getResultList();
+                createQuery("SELECT c FROM Course c where c.theCompany.id = :id",Course.class)
+                .setParameter("id", id).getResultList();
     }
 
     @Override
-    public void addCourse(Course course) {
+    public void addCourse(Long companyId, Course course) {
+        Company company =entityManager.find(Company.class, companyId);
+        company.addCourse(course);
+        course.setTheCompany(company);
         entityManager.persist(course);
     }
 
@@ -37,7 +41,7 @@ public class CourseDAOimpl implements CourseDAO {
     public void updateCourse(Long id, Course upCourse) {
         Course course = entityManager.find(Course.class, id);
         course.setCourseName(upCourse.getCourseName());
-        course.setDateOfStart(upCourse.getDateOfStart());
+//        course.setDateOfStart(upCourse.getDateOfStart());
         course.setDuration(upCourse.getDuration());
         course.setImage(upCourse.getImage());
         course.setDescription(upCourse.getDescription());

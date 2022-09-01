@@ -8,7 +8,7 @@
           crossorigin="anonymous">
     <style>
         .container {
-            width: 780px;
+            width: 960px;
             padding-top: 40px;
             margin: auto auto;
         }
@@ -51,7 +51,9 @@
                 <th scope="col">Located Country</th>
                 <th scope="col">Action</th>
                 <th scope="col">Action</th>
-                <th scope="col">Create Course</th>
+                <th scope="col">Course</th>
+                <th scope="col">Instructor</th>
+                <th scope="col">Student</th>
             </tr>
             </thead>
             <tbody th:each="company : ${companiesAttribute}">
@@ -60,7 +62,7 @@
                 <td th:text="${company.companyName}">Company Name</td>
                 <td th:text="${company.locatedCountry}">Company Location</td>
                 <td>
-                    <a th:href="@{/companies/{id}/edit(id=${company.getId()})}" type="button" class="btn btn-primary">UPDATE</a>
+                    <a th:href="@{/companies/edit/{id}(id=${company.getId()})}" type="button" class="btn btn-primary">UPDATE</a>
                 </td>
                 <td>
                     <form th:method="DELETE" th:action="@{/companies/delete/{companyID}(companyID=${company.getId()})}">
@@ -68,9 +70,17 @@
                     </form>
                 </td>
                 <td>
-                    <a th:href="@{/courses/new}" type="button" class="btn btn-primary">ADD COURSE</a>
+                    <a th:href="@{/courses/showCourses/{companyId}(companyId=${company.getId()})}"
+                       type="button" class="btn btn-primary">ADD COURSE</a>
                 </td>
                 <td>
+                    <a th:href="@{/instructors/showInstructors/{companyId}(companyId=${company.getId()})}"
+                       type="button" class="btn btn-primary">INSTRUCTOR</a>
+                </td>
+                <td>
+                    <a th:href="@{/students/showStudents/{companyId}(companyId=${company.getId()})}"
+                       type="button" class="btn btn-primary">STUDENT</a>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -25,15 +25,16 @@ public class Student {
     private String lastName;
     private String phoneNumber;
     private String email;
+    @Enumerated(EnumType.ORDINAL)
     private StudyFormat studyFormat;
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company theCompany;
 
-    @OneToOne
-    private Course theCourse;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "course_id")
+    private Course course;
 
-    @OneToMany
-    private List<Lesson> lessons;
+
 }

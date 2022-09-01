@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,24 @@ public class Instructor {
     private String email;
     private String specialization;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "instructors", cascade =
+            {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private List<Course> courses;
+
+    public void addCourse(Course course) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        } else {
+            this.courses.add(course);
+        }
+    }
+
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company theCompany;
+
+
+
 }

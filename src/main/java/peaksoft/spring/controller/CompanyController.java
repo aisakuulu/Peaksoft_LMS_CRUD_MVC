@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.spring.models.Company;
+import peaksoft.spring.models.Course;
 import peaksoft.spring.service.companyservice.CompanyService;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CompanyController {
         return "redirect:/companies";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String displayCompanyEditForm(@PathVariable("id") Long id, Model model){
         Company company = companyService.getCompanyByID(id);
         model.addAttribute("companyInfo", company);
@@ -57,5 +58,13 @@ public class CompanyController {
     public String deleteCompany(@PathVariable Long companyID){
         companyService.deleteCompany(companyID);
         return "redirect:/companies";
+    }
+
+    @PostMapping("/{companyId}/{courseId}/addCourse")
+    public String addCourseToCompany(@PathVariable("companyId") Long companyId,
+                                     @ModelAttribute("course") Course course,
+                                        @PathVariable("courseId") Long courseId){
+        companyService.addCourseToCompany(course.getId(), companyId);
+        return "redirect:/courses" + courseId;
     }
 }

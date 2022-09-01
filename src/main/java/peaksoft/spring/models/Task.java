@@ -3,8 +3,10 @@ package peaksoft.spring.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,9 +21,14 @@ public class Task {
     private Long id;
     private String taskName;
     private String taskText;
-    private Date deadLine;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate deadLine;
 
-    @OneToOne
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH,
+            CascadeType.DETACH})
     private Lesson lesson;
 
 }

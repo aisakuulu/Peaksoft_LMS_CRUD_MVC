@@ -20,7 +20,8 @@
 
 <div class="container">
 
-    <form th:method="PATCH" th:action="@{/companies/{id}(id=${companyInfo.getId()})}" th:object="${companyInfo}" class="container">
+    <form th:method="PATCH" th:action="@{/companies/{id}(id=${companyInfo.getId()})}"
+          th:object="${companyInfo}" class="container">
         <div class="mb-3">
             <label for="name" class="form-label">Company Name</label>
             <input th:field="*{companyName}" type="text" class="form-control" id="name" aria-describedby="emailHelp">

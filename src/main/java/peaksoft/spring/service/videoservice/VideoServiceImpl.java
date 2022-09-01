@@ -16,13 +16,13 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public List<Video> getAllVideo() {
-        return videoDao.getAllVideo();
+    public List<Video> getAllVideo(Long id) {
+        return videoDao.getAllVideo(id);
     }
 
     @Override
-    public void addVideo(Video video) {
-        videoDao.addVideo(video);
+    public void addVideo(Long id, Video video) {
+        videoDao.addVideo(id, video);
     }
 
     @Override

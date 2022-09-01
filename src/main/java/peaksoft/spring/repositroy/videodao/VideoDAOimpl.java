@@ -1,6 +1,7 @@
 package peaksoft.spring.repositroy.videodao;
 
 import org.springframework.stereotype.Repository;
+import peaksoft.spring.models.Lesson;
 import peaksoft.spring.models.Video;
 
 import javax.persistence.EntityManager;
@@ -16,12 +17,17 @@ public class VideoDAOimpl implements VideoDao{
     private EntityManager entityManager;
 
     @Override
-    public List<Video> getAllVideo() {
-        return entityManager.createQuery("SELECT v FROM Video v", Video.class).getResultList();
+    public List<Video> getAllVideo(Long id) {
+        return entityManager.createQuery
+                ("select v FROM Video v WHERE v.lesson.id = :id", Video.class)
+                .setParameter("id", id).getResultList();
     }
 
     @Override
-    public void addVideo(Video video) {
+    public void addVideo(Long lessonId, Video video) {
+        Lesson lesson = entityManager.find(Lesson.class,lessonId);
+        lesson.setVideo(video);
+        video.setLesson(lesson);
         entityManager.persist(video);
     }
 
